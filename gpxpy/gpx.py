@@ -209,7 +209,7 @@ class GPXWaypoint(mod_geo.Location):
                  time: Optional[mod_datetime.datetime]=None, name: Optional[str]=None, description: Optional[str]=None,
                  symbol: Optional[str]=None, type: Optional[str]=None, comment: Optional[str]=None,
                  horizontal_dilution: Optional[float]=None, vertical_dilution: Optional[float]=None,
-                 position_dilution: Optional[float]=None) -> None:
+                 position_dilution: Optional[float]=None, satellites: Optional[int]=None) -> None:
         mod_geo.Location.__init__(self, latitude or 0, longitude or 0, elevation)
         self.time = time
         self.magnetic_variation: Optional[float] = None
@@ -238,7 +238,7 @@ class GPXWaypoint(mod_geo.Location):
     def __repr__(self) -> str:
         representation = f'{self.latitude}, {self.longitude}'
         for attribute in 'elevation', 'time', 'name', 'description', 'symbol', 'type', 'comment', \
-                'horizontal_dilution', 'vertical_dilution', 'position_dilution':
+                'horizontal_dilution', 'vertical_dilution', 'position_dilution', 'satellites':
             value = getattr(self, attribute)
             if value is not None:
                 representation += ', {}={}'.format(attribute, repr(value))
@@ -283,7 +283,7 @@ class GPXRoutePoint(mod_geo.Location):
     def __init__(self, latitude: Optional[float]=None, longitude: Optional[float]=None, elevation: Optional[float]=None, time: Optional[mod_datetime.datetime]=None, name: Optional[str]=None,
                  description: Optional[str]=None, symbol: Optional[str]=None, type: Optional[str]=None, comment: Optional[str]=None,
                  horizontal_dilution: Optional[float]=None, vertical_dilution: Optional[float]=None,
-                 position_dilution: Optional[float]=None) -> None:
+                 position_dilution: Optional[float]=None, satellites: Optional[int]=None) -> None:
 
         mod_geo.Location.__init__(self, latitude or 0, longitude or 0, elevation)
         self.time = time
@@ -313,7 +313,7 @@ class GPXRoutePoint(mod_geo.Location):
     def __repr__(self) -> str:
         representation = f'{self.latitude}, {self.longitude}'
         for attribute in 'elevation', 'time', 'name', 'description', 'symbol', 'type', 'comment', \
-                'horizontal_dilution', 'vertical_dilution', 'position_dilution':
+                'horizontal_dilution', 'vertical_dilution', 'position_dilution', 'satellites':
             value = getattr(self, attribute)
             if value is not None:
                 representation += ', {}={}'.format(attribute, repr(value))
@@ -517,7 +517,7 @@ class GPXTrackPoint(mod_geo.Location):
     def __init__(self, latitude: Optional[float]=None, longitude: Optional[float]=None, elevation: Optional[float]=None,
                  time: Optional[mod_datetime.datetime]=None, symbol: Optional[str]=None, comment: Optional[str]=None,
                  horizontal_dilution: Optional[float]=None, vertical_dilution: Optional[float]=None,
-                 position_dilution: Optional[float]=None, speed: Optional[float]=None,
+                 position_dilution: Optional[float]=None, satellites: Optional[int]=None, speed: Optional[float]=None,
                  name: Optional[str]=None) -> None:
         mod_geo.Location.__init__(self, latitude or 0, longitude or 0, elevation)
         self.time = time
@@ -535,7 +535,7 @@ class GPXTrackPoint(mod_geo.Location):
         self.symbol: Optional[str] = symbol
         self.type: Optional[str] = None
         self.type_of_gpx_fix: Optional[str] = None
-        self.satellites: Optional[float] = None
+        self.satellites: Optional[int] = None
         self.horizontal_dilution = horizontal_dilution
         self.vertical_dilution = vertical_dilution
         self.position_dilution = position_dilution
@@ -546,7 +546,7 @@ class GPXTrackPoint(mod_geo.Location):
     def __repr__(self) -> str:
         representation = f'{self.latitude}, {self.longitude}'
         for attribute in 'elevation', 'time', 'symbol', 'comment', 'horizontal_dilution', \
-                'vertical_dilution', 'position_dilution', 'speed', 'name':
+                'vertical_dilution', 'position_dilution', 'satellites', 'speed', 'name':
             value = getattr(self, attribute)
             if value is not None:
                 representation += ', {}={}'.format(attribute, repr(value))
