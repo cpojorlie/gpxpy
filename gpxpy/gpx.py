@@ -224,7 +224,7 @@ class GPXWaypoint(mod_geo.Location):
         self.symbol = symbol
         self.type = type
         self.type_of_gpx_fix: Optional[str] = None
-        self.satellites: Optional[int] = None
+        self.satellites = satellites
         self.horizontal_dilution = horizontal_dilution
         self.vertical_dilution = vertical_dilution
         self.position_dilution = position_dilution
@@ -298,7 +298,7 @@ class GPXRoutePoint(mod_geo.Location):
         self.symbol = symbol
         self.type: Optional[str] = type
         self.type_of_gpx_fix: Optional[str] = None
-        self.satellites: Optional[int] = None
+        self.satellites = satellites
         self.horizontal_dilution = horizontal_dilution
         self.vertical_dilution = vertical_dilution
         self.position_dilution = position_dilution
@@ -535,7 +535,7 @@ class GPXTrackPoint(mod_geo.Location):
         self.symbol: Optional[str] = symbol
         self.type: Optional[str] = None
         self.type_of_gpx_fix: Optional[str] = None
-        self.satellites: Optional[int] = None
+        self.satellites = satellites
         self.horizontal_dilution = horizontal_dilution
         self.vertical_dilution = vertical_dilution
         self.position_dilution = position_dilution
